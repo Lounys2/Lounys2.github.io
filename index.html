@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettre De Pardon</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* Make the body take up the full height */
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            justify-content: space-between; /* Space out items vertically */
+            align-items: center; /* Center content horizontally */
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); /* Soft yellow to peach gradient */
+            padding: 20px; /* Add padding to body */
+        }
+        a {
+            text-decoration: none; /* Remove underline from the link */
+        }
+        button {
+            background: linear-gradient(120deg, #ffb347 0%, #ffcc33 100%); /* Yellow gradient to complement the background */
+            color: #333333; /* Dark text color for contrast */
+            border: none;
+            padding: 15px 30px; /* Increase button size */
+            font-size: 18px; /* Increase text size */
+            cursor: pointer;
+            border-radius: 12px; /* Rounded corners */
+            margin: 20px; /* Margin around the button */
+            transition: background 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+        button:hover {
+            background: linear-gradient(120deg, #ffcc33 0%, #ffb347 100%); /* Reverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        /* Cookies window styling */
+        .cookies-window {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffffff; /* White background */
+            color: #333333;
+            padding: 15px 25px; /* Adjust padding for a more compact window */
+            border-radius: 15px; /* More rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow for depth */
+            z-index: 1000;
+            opacity: 1; /* Fully opaque */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for fading and sliding */
+            transform: translateY(0); /* Position at normal place */
+        }
+        .cookies-window.hidden {
+            opacity: 0; /* Fully transparent */
+            transform: translateY(20px); /* Slide down slightly */
+        }
+        .cookies-window p {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            font-weight: bold; /* Make the text bold */
+            text-align: center; /* Center the text */
+        }
+        .cookies-buttons {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+        .cookies-window button {
+            background: linear-gradient(45deg, #ff6f61, #d7263d); /* Red-orange gradient */
+            font-size: 14px; /* Slightly smaller text size */
+            padding: 8px 20px; /* Adjust padding for the buttons */
+            border-radius: 8px; /* Rounded corners */
+            transition: background 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+        }
+        .cookies-window button:hover {
+            background: linear-gradient(45deg, #d7263d, #ff6f61); /* Reverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        .useless-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .useless-counter {
+            font-size: 20px; /* Larger font size */
+            font-weight: bold; /* Bold font */
+            color: #444444; /* Slightly darker text color */
+            background: #fff9e6; /* Light background */
+            border: 2px solid #ffcc33; /* Border matching button */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px 20px; /* Padding around text */
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            text-align: center; /* Center text */
+            min-width: 150px; /* Minimum width */
+        }
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1; /* Allow space to be taken up */
+            justify-content: flex-start; /* Align to the top */
+            width: 100%; /* Full width */
+        }
+        .middle-buttons-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1; /* Take up the remaining space */
+            width: 100%; /* Full width */
+            gap: 20px; /* Space between the buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="button-wrapper">
+        <!-- Useless button and counter -->
+        <div class="useless-button-container">
+            <button onclick="incrementCounter()">Le bouton qui ne sert à rien</button>
+            <div class="useless-counter" id="useless-counter">Compteur: 0</div>
+        </div>
+    </div>
+    <!-- Middle buttons for Credits and Excuses -->
+    <div class="middle-buttons-container">
+        <a href="credits/credits.html">
+            <button>Credits</button>
+        </a>
+        <a href="../sorry.html">
+            <button>Excuses</button>
+        </a>
+    </div>
+    
+    <!-- Cookies window -->
+    <div class="cookies-window" id="cookies-window">
+        <p>Voulez-vous accepter nos cookies?</p>
+        <div class="cookies-buttons">
+            <button onclick="closeCookiesWindow()">Non</button>
+            <button onclick="closeCookiesWindow()">Non</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize counter from localStorage
+        let counter = parseInt(localStorage.getItem('useless-counter')) || 0;
+        document.getElementById('useless-counter').textContent = 'Compteur: ' + counter;
+
+        function incrementCounter() {
+            counter++;
+            document.getElementById('useless-counter').textContent = 'Compteur: ' + counter;
+            // Store the updated counter value in localStorage
+            localStorage.setItem('useless-counter', counter);
+        }
+
+        // Check if the cookies consent has already been given in this session
+        if (sessionStorage.getItem('cookies-consent')) {
+            document.getElementById('cookies-window').style.display = 'none';
+        }
+
+        function closeCookiesWindow() {
+            const cookiesWindow = document.getElementById('cookies-window');
+            cookiesWindow.classList.add('hidden');
+            setTimeout(() => {
+                cookiesWindow.style.display = 'none';
+                // Set the consent in sessionStorage
+                sessionStorage.setItem('cookies-consent', 'true');
+            }, 500); // Match the transition duration
+        }
+    </script>
+</body>
+</html>

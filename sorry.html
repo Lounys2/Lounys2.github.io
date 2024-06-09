@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Excuses</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #fef6e4; /* Soft peach background */
+            color: #333333; /* Dark text color */
+            line-height: 1.6; /* Increase line height for readability */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 100vh; /* Full viewport height */
+            text-align: center; /* Center align text */
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .container {
+            max-width: 600px; /* Limit container width */
+            background: #ffffff; /* White background */
+            padding: 30px; /* Padding inside container */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            margin: 20px; /* Margin for spacing */
+        }
+        .container p {
+            margin: 15px 0; /* Space between paragraphs */
+            font-size: 18px; /* Increase font size */
+        }
+        .container p:first-of-type {
+            margin-top: 0; /* Remove margin from first paragraph */
+        }
+        .container p:last-of-type {
+            margin-bottom: 0; /* Remove margin from last paragraph */
+        }
+        .signature {
+            font-weight: bold; /* Bold signature */
+            margin-top: 20px; /* Add space above signature */
+        }
+        .button-container {
+            margin-top: 30px; /* Space above button container */
+        }
+        .back-button {
+            background: linear-gradient(120deg, #ffb347 0%, #ffcc33 100%); /* Gradient matching index.html */
+            color: #333333; /* Dark text color */
+            border: none;
+            padding: 15px 30px; /* Padding around text */
+            font-size: 18px; /* Increase font size */
+            cursor: pointer;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-decoration: none; /* Remove underline */
+            transition: background 0.3s, transform 0.3s; /* Smooth transition */
+        }
+        .back-button:hover {
+            background: linear-gradient(120deg, #ffcc33 0%, #ffb347 100%); /* Reverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Bonjour,</p>
+        <p>Je voulais vous présenter mes excuses pour ce que j'ai fait.</p>
+        <p>Je me rends compte que cela vous a blessé et ce n'était pas mon intention.</p>
+        <p>J'espère que vous pourrez accepter mes excuses.</p>
+        <br>
+        <p>Cordialement,</p>
+        <p class="signature">Lounyss Ailhas</p>
+        <div class="button-container">
+            <a href="index.html" class="back-button">Retour</a>
+        </div>
+    </div>
+</body>
+</html>
